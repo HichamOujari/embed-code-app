@@ -1,0 +1,28 @@
+{
+  "name": "embed-code-app",
+  "version": "1.0.0",
+  "description": "embed-code-app by Komoroho",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "make": "electron-forge make"
+  },
+  "keywords": [
+    "komoroho",
+    "embed-code-app"
+  ],
+  "author": "Komoroho",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.50",
+    "@electron-forge/maker-deb": "^6.0.0-beta.50",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.50",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.50",
+    "@electron-forge/maker-zip": "^6.0.0-beta.50",
+    "devtron": "^1.4.0",
+    "electron": "^17.1.2"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}
