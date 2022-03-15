@@ -16,6 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
             const videoId = embdedCode
               .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
               .split('"')[0];
+            document.getElementById("saveCodeId").setAttribute("disable", true);
+            document.getElementById("waitid").style.display="block"
             ipcRenderer.invoke(
               "save-files",
               absolutePath,
@@ -31,5 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
   );
   ipcRenderer.on("asynchronous-message", function (evt, message) {
     alert(message);
+    document.getElementById("saveCodeId").removeAttribute("disable");
+    document.getElementById("waitid").style.display="none"
   });
 });
