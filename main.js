@@ -47,6 +47,12 @@ ipcMain.handle(
     await saveFiles(absolutePath + "/" + filename, code, videoId, event);
   }
 );
+ipcMain.handle(
+  "set-path",
+  async (event, absolutePath, filename, code, videoId) => {
+    await saveFiles(absolutePath + "/" + filename, code, videoId, event);
+  }
+);
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
@@ -60,7 +66,7 @@ async function saveFiles(filename, code, videoId, event) {
       if (err)
         event.sender.send(
           "asynchronous-message",
-          "File already exist! change the name"
+          err
         );
       else {
         const response = await Axios({
