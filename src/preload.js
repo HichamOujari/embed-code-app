@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
     async function (event) {
       var absolutePath = document.getElementById(
         "setDefaultDirectory"
-      ).innerHTML;
+      ).value;
       var embdedCode = document.getElementById("textareaId").value;
       var filename = document.getElementById("filenameId").value;
       if (embdedCode.length == 0) alert("Enter your embed code");
