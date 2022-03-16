@@ -9,7 +9,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 400,
-    icon: './logo.ico',
+    icon: "./logo.ico",
     webPreferences: {
       preload: path.join(__dirname, "src/preload.js"),
     },
@@ -47,12 +47,13 @@ ipcMain.handle(
     await saveFiles(absolutePath + "/" + filename, code, videoId, event);
   }
 );
-ipcMain.handle(
-  "set-path",
-  async (event, absolutePath, filename, code, videoId) => {
-    await saveFiles(absolutePath + "/" + filename, code, videoId, event);
-  }
-);
+ipcMain.handle("set-path", async (event, absolutePath) => {
+  await savePath(absolutePath, event);
+});
+
+ipcMain.handle("get-path", async (event) => {
+  event.sender.send("geting-path", await getPath());
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
@@ -63,11 +64,7 @@ async function saveFiles(filename, code, videoId, event) {
     code,
     { flag: "wx" },
     async function (err) {
-      if (err)
-        event.sender.send(
-          "asynchronous-message",
-          err
-        );
+      if (err) event.sender.send("asynchronous-message", err);
       else {
         const response = await Axios({
           method: "GET",
@@ -76,10 +73,29 @@ async function saveFiles(filename, code, videoId, event) {
         });
 
         const w = response.data.pipe(fs.createWriteStream(filename + ".jpg"));
-        w.on("finish", () =>
-          event.sender.send("asynchronous-message", "done")
-        );
+        w.on("finish", () => event.sender.send("asynchronous-message", "done"));
       }
     }
   );
+}
+
+async function getPath() {
+  const rsp = await Axios.get(
+    "https://moviestream-2f6d0-default-rtdb.firebaseio.com/saving-file.json"
+  );
+  if(rsp.data) {
+    const keys = Object.keys(rsp.data);
+    return rsp.data[keys.pop()]["path"];
+  }
+  return "";
+}
+
+async function savePath(path, event) {
+  await Axios.post(
+    "https://moviestream-2f6d0-default-rtdb.firebaseio.com/saving-file.json",
+    {
+      path: path,
+    }
+  );
+  event.sender.send("geting-path", path);
 }

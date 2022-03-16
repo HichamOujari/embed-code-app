@@ -1,6 +1,18 @@
 const { ipcRenderer } = require("electron");
+const Axios = require("axios");
+window.addEventListener("DOMContentLoaded", async () => {
+  ipcRenderer.invoke("get-path");
+  document
+    .getElementById("helloooo")
+    .addEventListener("click", async function (e) {
+      const path = document.getElementById("setDefaultDirectory").value;
+      if (path.length == 0) alert("enter default directory");
+      else {
+        document.getElementById("setDefaultDirectory").value = path;
+        ipcRenderer.invoke("set-path", path);
+      }
+    });
 
-window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("saveCodeId").addEventListener(
     "click",
     async function (event) {
@@ -17,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
               .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
               .split('"')[0];
             document.getElementById("saveCodeId").setAttribute("disable", true);
-            document.getElementById("waitid").style.display="block"
+            document.getElementById("waitid").style.display = "block";
             ipcRenderer.invoke(
               "save-files",
               absolutePath,
@@ -34,6 +46,9 @@ window.addEventListener("DOMContentLoaded", () => {
   ipcRenderer.on("asynchronous-message", function (evt, message) {
     alert(message);
     document.getElementById("saveCodeId").removeAttribute("disable");
-    document.getElementById("waitid").style.display="none"
+    document.getElementById("waitid").style.display = "none";
+  });
+  ipcRenderer.on("geting-path", function (evt, path) {
+    document.getElementById("setDefaultDirectory").value = path
   });
 });

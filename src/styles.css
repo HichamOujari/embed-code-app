@@ -42,12 +42,12 @@ nav {
 .defaultDirectory>p>i{
     font-weight: normal;
 }
-.defaultDirectory>label{
+.defaultDirectory>i{
     text-align: center;
     cursor:pointer;
 }
 
-.defaultDirectory>label:hover{
+.defaultDirectory>i:hover{
     color: orange;
 }
 
