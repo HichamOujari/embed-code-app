@@ -18,7 +18,7 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadFile("./src/index.html");
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
@@ -43,8 +43,10 @@ app.on("window-all-closed", function () {
 
 ipcMain.handle(
   "save-files",
-  async (event, absolutePath, filename, code, videoId) => {
-    await saveFiles(absolutePath + "/" + filename, code, videoId, event);
+  async (event, absolutePath, data) => {
+    data.forEach(async file => {
+      await saveFiles(absolutePath + "/" + file.filename, file.embdedCode, file.videoId, event,data.indexOf(file) == data.length - 1);
+    })
   }
 );
 ipcMain.handle("set-path", async (event, absolutePath) => {
@@ -58,13 +60,13 @@ ipcMain.handle("get-path", async (event) => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-async function saveFiles(filename, code, videoId, event) {
+async function saveFiles(filename, code, videoId, event, islAST) {
   await fs.writeFile(
     filename + ".txt",
     code,
     { flag: "wx" },
     async function (err) {
-      if (err) event.sender.send("asynchronous-message", err);
+      if (err) saveFiles(filename+' (1)', code, videoId, event, islAST);
       else {
         const response = await Axios({
           method: "GET",
@@ -73,7 +75,11 @@ async function saveFiles(filename, code, videoId, event) {
         });
 
         const w = response.data.pipe(fs.createWriteStream(filename + ".jpg"));
-        w.on("finish", () => event.sender.send("asynchronous-message", "done"));
+        w.on("finish", () => {
+          if(islAST) {
+            event.sender.send("asynchronous-message", "done")
+          }
+        });
       }
     }
   );

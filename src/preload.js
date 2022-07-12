@@ -17,27 +17,22 @@ window.addEventListener("DOMContentLoaded", async () => {
     "click",
     async function (event) {
       var absolutePath = document.getElementById("setDefaultDirectory").value;
-      var embdedCode = document.getElementById("textareaId").value;
-      var filename = document.getElementById("filenameId").value;
+      var dataCsv = document.getElementById("dataCsvId").files;
       if (absolutePath.length == 0) alert("Enter directory path");
       else {
-        if (embdedCode.length == 0) alert("Enter your embed code");
+        if (dataCsv.length == 0) alert("Selet your csv file");
         else {
-          if (filename.length == 0) alert("Enter File name");
-          else {
-            const videoId = embdedCode
-              .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
-              .split('"')[0];
-            document.getElementById("saveCodeId").setAttribute("disable", true);
-            document.getElementById("waitid").style.display = "block";
-            ipcRenderer.invoke(
+          document.getElementById("saveCodeId").setAttribute("disable", true);
+          document.getElementById("waitid").style.display = "block";
+          var fr = new FileReader();
+          fr.onload = function () {
+            getData(fr.result, (data) => ipcRenderer.invoke(
               "save-files",
               absolutePath,
-              filename,
-              embdedCode,
-              videoId
-            );
+              data
+            ))
           }
+          fr.readAsText(dataCsv[0]);
         }
       }
     },
@@ -52,3 +47,27 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("setDefaultDirectory").value = path
   });
 });
+
+
+function getData(data, call) {
+  var spliter = '</div>';
+  var embdedCodes = [];
+  data = data.split('\n<script');
+  data.forEach((ele) => {
+    if (data.indexOf(ele) != 0) {
+      let embededCode = '<script' + ele.split(spliter)[0] + '</div>';
+      //embededCode = embededCode.replaceAll('""', '"')
+      let filenmae = ele.split(spliter)[1].replaceAll('\r', '');
+      filenmae = filenmae.replaceAll('\n\n<!-- ','').replaceAll(' -->','')
+      let videoId = embededCode
+        .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
+        .split('"')[0]
+      embdedCodes.push({
+        embdedCode: embededCode,
+        filename: filenmae,
+        videoId: videoId
+      })
+    }
+  })
+  call(embdedCodes)
+}

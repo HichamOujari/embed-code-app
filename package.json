@@ -3,6 +3,33 @@
   "version": "1.0.0",
   "description": "embed-code-app by Komoroho",
   "main": "main.js",
+  "build": {
+    "appId": "com.electron.1221",
+    "productName": "embed-code-app",
+    "asar": false, 
+    "mac": {
+      "target": [
+        "pkg"
+      ],
+      "entitlements": "entitlements.mac.plist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "msi",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  },
   "scripts": {
     "start": "electron .",
     "make": "electron-forge make",
