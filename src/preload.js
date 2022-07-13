@@ -50,24 +50,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 
 function getData(data, call) {
-  var spliter = '</div>';
   var embdedCodes = [];
-  data = data.split('\n<script');
+  data = data.split('</div>\r\n\r\n');
   data.forEach((ele) => {
-    if (data.indexOf(ele) != 0) {
-      let embededCode = '<script' + ele.split(spliter)[0] + '</div>';
-      //embededCode = embededCode.replaceAll('""', '"')
-      let filenmae = ele.split(spliter)[1].replaceAll('\r', '');
-      filenmae = filenmae.replaceAll('\n\n<!-- ','').replaceAll(' -->','')
-      let videoId = embededCode
-        .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
-        .split('"')[0]
-      embdedCodes.push({
-        embdedCode: embededCode,
-        filename: filenmae,
-        videoId: videoId
-      })
-    }
+    let filenmae = ele.split(' -->\r\n')[0].replaceAll('<!-- ','');
+    let embededCode = ele.split(' -->\r\n')[1];
+    embededCode += (data.indexOf(ele) == data.length - 1)?'':'</div>';
+    let videoId = embededCode
+      .split('<iframe src="https://cdn.viqeo.tv/embed/?vid=')[1]
+      .split('"')[0]
+    embdedCodes.push({
+      embdedCode: embededCode,
+      filename: filenmae,
+      videoId: videoId
+    })
   })
   call(embdedCodes)
 }
