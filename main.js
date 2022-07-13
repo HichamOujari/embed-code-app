@@ -61,6 +61,12 @@ ipcMain.handle("get-path", async (event) => {
 // code. You can also put them in separate files and require them here.
 
 async function saveFiles(filename, code, videoId, event, islAST) {
+  var imagePath = "https://cdn.viqeo.tv/preview/" + videoId + ".jpg";
+  const codeSource = await Axios({
+    method: "GET",
+    url: 'https://cdn.viqeo.tv/embed/?vid='+videoId,
+  })
+  if(codeSource.data.includes('preview highQuality')) imagePath = 'https://cdn.viqeo.tv/storage' + codeSource.data.split('preview highQuality')[0].split('<img src="https://cdn.viqeo.tv/storage')[1].replaceAll('" class="','')
   await fs.writeFile(
     filename + ".txt",
     code,
@@ -70,7 +76,7 @@ async function saveFiles(filename, code, videoId, event, islAST) {
       else {
         const response = await Axios({
           method: "GET",
-          url: "https://cdn.viqeo.tv/preview/" + videoId + ".jpg",
+          url: imagePath,
           responseType: "stream",
         });
 
