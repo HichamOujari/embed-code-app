@@ -10,10 +10,12 @@
     <div class="mainContent">
       <div class="defaultDirectory">
         <p>Default Directory : <input type="text" id="setDefaultDirectory" placeholder="set your default directory"/></p>
+        <i id="selectFolderId" class="bi bi-search">Search</i>
         <i id="helloooo" class="bi bi-pencil-fill">update</i>
       </div>
       <div class="contentForm">
         <input type="file" placeholder="upload file" accept=".txt" id="dataCsvId" />
+        <input type="file" hidden id="directoryId" webkitdirectory directory/>
         <button id="saveCodeId">Save</button>
         <p id="waitid">loading</p>
       </div>

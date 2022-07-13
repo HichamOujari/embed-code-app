@@ -7,7 +7,7 @@ const Axios = require("axios").default;
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
+    width: 900,
     height: 400,
     icon: "./logo.ico",
     webPreferences: {

@@ -1,4 +1,5 @@
 const { ipcRenderer } = require("electron");
+const {resolve} = require('path');
 const Axios = require("axios");
 window.addEventListener("DOMContentLoaded", async () => {
   ipcRenderer.invoke("get-path");
@@ -35,6 +36,24 @@ window.addEventListener("DOMContentLoaded", async () => {
           fr.readAsText(dataCsv[0]);
         }
       }
+    },
+    false
+  );
+
+
+  document.getElementById("selectFolderId").addEventListener(
+    "click",
+    async function (event) {
+      document.getElementById("directoryId").click();
+    },
+    false
+  );
+
+  document.getElementById("directoryId").addEventListener(
+    "change",
+    async function (event) {
+      var doc = event.target.files[0];
+      document.getElementById("setDefaultDirectory").value = doc.path.replaceAll(doc.name,'')
     },
     false
   );
