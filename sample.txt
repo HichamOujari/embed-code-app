@@ -1,0 +1,41 @@
+<!-- VeckoYoga - Söndag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--5ac9cdaaec590553482b" data-vnd="5ac9cdaaec590553482b" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=5ac9cdaaec590553482b" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Måndag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--c3545dd9665bc2a12970" data-vnd="c3545dd9665bc2a12970" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=c3545dd9665bc2a12970" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Fredag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--3a2e0df847ca1428027f" data-vnd="3a2e0df847ca1428027f" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=3a2e0df847ca1428027f" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Lördag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--a4a7dba30075c33fa07f" data-vnd="a4a7dba30075c33fa07f" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=a4a7dba30075c33fa07f" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Tisdag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--00a53bd37670d16d8baa" data-vnd="00a53bd37670d16d8baa" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=00a53bd37670d16d8baa" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Torsdag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--eca40f7734343d210b1e" data-vnd="eca40f7734343d210b1e" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=eca40f7734343d210b1e" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
+
+<!-- VeckoYoga - Onsdag -->
+<script async src="https://cdn.viqeo.tv/js/vq_starter.js"></script>
+      <div style="width:100%;height:0;position:relative;padding-bottom: 56.20608899297424%;" class="viqeo-embed viqeo-horizontal viqeo-embed--0333b6410d8ff1dffe99" data-vnd="0333b6410d8ff1dffe99" data-profile="4864" data-aspectRatio="0.5620608899297423"   >
+        <iframe src="https://cdn.viqeo.tv/embed/?vid=0333b6410d8ff1dffe99" width="100%" height="100%" style="position:absolute;" frameBorder="0" allowFullScreen></iframe>
+      </div>
