@@ -53,6 +53,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     "change",
     async function (event) {
       var doc = event.target.files[0];
+      console.log(doc)
       document.getElementById("setDefaultDirectory").value = doc.path.replaceAll(doc.name,'')
     },
     false

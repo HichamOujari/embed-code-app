@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "make": "electron-forge make",
-    "dist": "electron-builder"
+    "dist": "electron-builder --win"
   },
   "keywords": [
     "komoroho",
