@@ -73,7 +73,7 @@ function getData(data, call) {
   var embdedCodes = [];
   data = data.split('</div>\r\n\r\n');
   data.forEach((ele) => {
-    let filenmae = ele.split(' -->\r\n')[0].replaceAll('<!-- ','');
+    let filenmae = ele.split(' -->\r\n')[0].replaceAll('<!-- ','').replaceAll(':','').replaceAll('?','').replaceAll('|','').replaceAll('>','').replaceAll('<','');
     let embededCode = ele.split(' -->\r\n')[1];
     embededCode += (data.indexOf(ele) == data.length - 1)?'':'</div>';
     let videoId = embededCode
